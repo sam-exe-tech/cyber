@@ -1,36 +1,34 @@
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement; //Add required imports
 
-public class PageLocator    //DO NOT Change the class Name
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.By;
+
+public class NameLocator 
 {
-	String lName;
-	static WebDriver driver;
-	static WebElement element;
-	public WebDriver createDriver()  //DO NOT change the method signature
-	{
-	   driver=DriverSetup.getWebDriver();
-	   return driver;      //Invoke getWebDriver method from DriverSetup and return it
-	}
-	
-	public WebElement getPageLocator(WebDriver driver)  //DO NOT change the method signature
-	{
-	   WebElement lastName=driver.findElement(By.id("lastname"));
-	   lName = lastName.getAttribute("placeholder");
-	   return lastName;     /*Replace this comment by the code statement to get the WebElement of 'Lastname'*/
-	   /*Find the element by id */
+    String fName;  
+    static WebDriver driver;  
     
-	}
-	public String getName(WebElement element)  //DO NOT change the method signature
-	{
-	  return lName;  //Get the attribute value from the element and return it
-	}
-	
-	public static void main(String[] args){
-	    PageLocator pl=new PageLocator();
-	    String name= pl.getName(element);
-	    System.out.println("The lastName is"+ name);
-	    //Add required code
-	}
+    public WebDriver setupDriver()
+    {
+        
+       driver=DriverSetup.getWebDriver(); /*Invoke the getWebDriver method from the DriverSetup File*/
+        
+        return driver;
+    }
+    public String getNameLocator()
+    {
+       driver.findElement(By.name("fname"));
+       fName = driver.findElement(By.name("fname")).getAttribute("placeholder");   /*Identify the Firstname
+         Get the placeholder value
+         Store the placeholder value in the static variable fName.*/
+       return fName;
+    }
+    
+    public static void main(String[] args)
+    {
+        NameLocator namLocator=new NameLocator();
+        String name=namLocator.getNameLocator();
+        System.out.println("The name is "+name);
+    }
 
 }
