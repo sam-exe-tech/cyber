@@ -1,93 +1,94 @@
-
 import org.openqa.selenium.WebDriver;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.WebElement;
 
-public class Registration    //DO NOT Change the class Name
+public class NameLocator 
 {
+    static String page1, page2,page3,page4,page5,baseUrl;
     static WebDriver driver;
-    static String baseUrl="https://webapps.tekstac.com/InvoiceUpdates/"; //Assign the value for baseUrl
     
-    static WebElement result;
-    static String Category;
-    static String message;
-    public WebDriver createDriver()       //DO NOT change the method signature
+    public WebDriver setupDriver()
     {
         driver=DriverSetup.getWebDriver();
         return driver;
-       //Implement code to create Driver from DriverSetup and return it
-       //use getWebDriver method
-    }
-    
-    public void navigate(WebDriver driver)   //DO NOT change the method signature
-    {
-        // set the url to baseUrl and navigate ("http://webapps.tekstac.com/InvoiceUpdates/") 
-        driver.get(baseUrl);
-    }
-    
-    public Select getCategoryElement(WebDriver driver)  //DO NOT change the method signature
-    {
-       /*Replace this comment by the code statement to get the driver*/
-       
-       /* Select Value "Utility Invoice" from 'Category' (drop-down) and return the select element  
-             * Declare the drop-down element as an instance of the Select class. 
-             * Return select object    */
-       Select Category = new Select(driver.findElement(By.tagName("select")));
-       Category.selectByVisibleText("Utility Invoice");
-       return Category;
-    }
-    public void setFormValues(WebDriver driver)  //DO NOT change the method signature
-    {
-        /*Using the driver, Find the elements by id and send the values to the elements */
-      
-      /*  Send 'Rakesh' for 'name'  
-               '123' for 'number'
-                'new user' for user type 
-                'Utility Invoice' for select 
-                '1000' for 'amount'
-                '9876543210' for phone 
-                'New User Invoice' for 'comments'
-      */ 
-      navigate(driver);
-      driver.findElement(By.id("name")).sendKeys("Rakesh");
-      driver.findElement(By.id("number")).sendKeys("123");
-      driver.findElement(By.id("newUser")).click();
-      Select Category=getCategoryElement(driver);
-      Category.selectByVisibleText("Utility Invoice");
-      driver.findElement(By.name("amount")).sendKeys("1000");
-      driver.findElement(By.name("num")).sendKeys("9876543210");
-      driver.findElement(By.name("comments")).sendKeys("New User Invoice");
-      driver.findElement(By.id("submit")).click();
-      result=driver.findElement(By.id("result"));
-      message=getSuccessMessage(result);
-      System.out.println(message);
-    }
-    
-    public WebElement getSuccessMessageElement(WebDriver driver) //DO NOT change the method signature
-    {
-        result=driver.findElement(By.id("result"));
-        return result;
-        //Get the message element and return it
-        //After registration a success message is displayed. Identify and return the WebElement of the same. 
-    }
-
-    public String getSuccessMessage(WebElement element)  //DO NOT change the method signature
-    {
-        message=result.getAttribute("value");
-        return message;
-        //Get the attribute value from the WebElement of success message displayed and return it. 
-    }
-
-    public static void main(String[] args){
-        Registration reg=new Registration();
-        //Add required code
-        reg.navigate(driver);
-        reg.setFormValues(driver);
-        reg.getCategoryElement(driver);
-        reg.getSuccessMessageElement(driver);
-        String Message=reg.getSuccessMessage(result);
+        /*Replace this comment by the code statement to get the driver*/
         
     }
+    public void navigate1() 
+    {
+        baseUrl="https://selenium.dev/";
+        driver.get(baseUrl);
+        /*Replace this comment by the code statement to navigate to baseUrl */
+        
+    }
+    public void getPageTitle1()
+    {
+        page1=driver.getTitle();
+        /*Replace this comment by the code statement to get page title of  "https://selenium.dev/"*/
+        /* Assign the page title to variable 'page1' */
+        
+    }
+    public void navigate2()
+    {
+        baseUrl="https://www.google.co.in";
+        driver.get(baseUrl);
+        /*Replace this comment by the code statement to navigate to https://www.google.co.in/ */
+        
+    }
+    public void getPageTitle2()
+    {
+        page2= driver.getTitle();
+        /*Replace this comment by the code statement to get page title of  https://www.google.co.in/ */
+        /* Assign the page title to variable 'page2' */
+        
+    }
+    public void navigateBack()
+    {
+        driver.navigate().back();
+        /*Replace this comment by the code statement to navigate back */
+       
+    }
+    public void getPageTitle3()
+    {
+        page3= driver.getTitle();
+        /*Replace this comment by the code statement to get page title of backed page */
+        /* Assign the page title to variable 'page3' */
+        
+    }
+    public void navigateForward()
+    {
+        driver.navigate().forward();
+        /*Replace this comment by the code statement to navigate forward */
+        
+    }
+    public void getPageTitle4()
+    {
+        page4=driver.getTitle();
+        /*Replace this comment by the code statement to get page title of the forwarded page */
+        /* Assign the page title to variable 'page4' */
+        
+    }
+    public void refreshPage()
+    {
+        driver.navigate().refresh();
+        /*Replace this comment by the code statement to refresh the page */
+       
+    }
+    public void getPageTitle5()
+    {
+        page5=driver.getTitle();
+        /*Replace this comment by the code statement to get page title of refreshed page */
+        /* Assign the page title to variable 'page5' */
+        
+    }
+
+    
+    public static void main(String[] args)
+    {
+        NameLocator namLocator=new NameLocator();
+        namLocator.setupDriver();
+        //Implement code here
+    }
+
 }
+
