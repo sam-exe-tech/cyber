@@ -1,44 +1,43 @@
+
 import org.openqa.selenium.WebDriver;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
 
 public class Registration 
 {
-    String[] fName={"Rahul","Dravid","Rahul Dravid","Srinivas6"};
     static WebDriver driver;
     static String baseUrl; 
-    DriverSetup setup=new DriverSetup();
+    
     public WebDriver setupDriver()
     {
-        
-        /* Invoke the getWebDriver method 
-           Set value of BaseUrl
-           Launch the app using get() with baseUrl */
-        driver=setup.getWebDriver();
-        baseUrl="http://webapps.tekstac.com/Shopify/";
-        driver.get(baseUrl);
+        //Assign the value for baseUrl
+        /* Get the driver, and launch the app using get() with baseUrl */
+         baseUrl="http://webapps.tekstac.com/Shopify/";
+         driver=DriverSetup.getWebDriver();
+         driver.get(baseUrl);
          return driver;
     }
     
     public void setElements()
     {
-        /*Using the driver, Find the elements by id 
-          Set the values to the elements
-          Register the form*/
-       driver.findElement(By.id("firstname")).sendKeys(fName[0]);
-       driver.findElement(By.id("lastname")).sendKeys(fName[1]);
-       driver.findElement(By.id("username")).sendKeys(fName[2]);
-       driver.findElement(By.id("pass")).sendKeys(fName[3]);
+        /*Using the driver, Find the elements by id and send the values to the elements*/
+       driver.findElement(By.id("firstname")).sendKeys("Mithali");
+       driver.findElement(By.id("lastname")).sendKeys("Raj");
+       driver.findElement(By.id("username")).sendKeys("Mithali Raj");
+       Select city=new Select(driver.findElement(By.id("selectcity")));
+       city.selectByVisibleText("Chennai");
+       driver.findElement(By.xpath("//input[@value='female']")).click();
+       driver.findElement(By.id("pass")).sendKeys("MR@123");
        driver.findElement(By.id("reg")).click();
     }
     
     public static void main(String[] args)
     {
         Registration reg=new Registration();
-        /* Implement the code here */
-       reg.setupDriver();
-       reg.setElements();
-       
+        reg.setupDriver();
+        reg.setElements();
+        //Implement Code Here
     }
 
 }
