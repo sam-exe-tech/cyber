@@ -1,45 +1,33 @@
-
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By;//Add required imports
+import org.openqa.selenium.WebElement;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.Select;
-
-public class Registration 
+public class CSSLocator     //DO NOT change the class name
 {
-    static WebDriver driver;
-    static String baseUrl; 
-    
-    public WebDriver setupDriver()
-    {
-        //Assign the value for baseUrl
-        /* Get the driver, and launch the app using get() with baseUrl */
-         baseUrl="http://webapps.tekstac.com/Shopify/";
-         driver=DriverSetup.getWebDriver();
-         driver.get(baseUrl);
-         return driver;
-    }
-    
-    public void setElements()
-    {
-        /*Using the driver, Find the elements by id and send the values to the elements*/
-       driver.findElement(By.id("firstname")).sendKeys("Mithali");
-       driver.findElement(By.id("lastname")).sendKeys("Raj");
-       driver.findElement(By.id("username")).sendKeys("Mithali Raj");
-       Select city=new Select(driver.findElement(By.id("selectcity")));
-       city.selectByVisibleText("Chennai");
-       driver.findElement(By.xpath("//input[@value='female']")).click();
-       driver.findElement(By.id("pass")).sendKeys("MR@123");
-       driver.findElement(By.id("reg")).click();
-    }
-    
-    public static void main(String[] args)
-    {
-        Registration reg=new Registration();
-        reg.setupDriver();
-        reg.setElements();
-        //Implement Code Here
-    }
-
+	public WebDriver createDriver()  //DO NOT change the method signature
+	{
+	   return DriverSetup.getWebDriver(); //Implement code to create Driver from DriverSetup and return it
+	}
+	
+	public WebElement getCSSLocator(WebDriver driver)  //DO NOT change the method signature
+	{
+	  return driver.findElement(By.cssSelector("#username"));      /*Replace this comment by the code statement to get the Web element of username*/
+	   /*Find and return the element */ 
+       
+	}
+	
+	public String getName(WebElement element)  //DO NOT change the method signature
+	{
+	    return element.getAttribute("placeholder");      //Get the attribute value from the element and return it
+	}
+	
+    public static void main(String[] args){
+	    CSSLocator pl=new CSSLocator();
+	    //Add required code
+	    WebDriver driver=pl.createDriver();
+	    WebElement element=pl.getCSSLocator(driver);
+	    pl.getName(element);
+	}
 }
 
 
